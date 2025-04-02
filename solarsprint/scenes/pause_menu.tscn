@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://poc617s8t804"]
+
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_mjlfl"]
+
+[node name="pauseMenu" type="CanvasLayer"]
+script = ExtResource("1_mjlfl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 1966.0
+offset_bottom = 1110.0
+scale = Vector2(1.00119, 0.997081)
+color = Color(0, 0, 0, 0.419608)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 366.0
+offset_right = 1287.0
+offset_bottom = 815.0
+
+[node name="resume" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "resume"
+
+[node name="restart" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "restart"
+
+[node name="exit" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "exit"

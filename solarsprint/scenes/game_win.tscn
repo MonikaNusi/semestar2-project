@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqoq7k4bcesr3"]
+
+[ext_resource type="Script" path="res://scenes/game_win.gd" id="1_6jtj6"]
+[ext_resource type="FontFile" uid="uid://dk5y4y3togj5c" path="res://PhysicsCarGameAssets/Milker.otf" id="2_cllm0"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_6jtj6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 2023.0
+offset_bottom = 1112.0
+color = Color(0, 0, 0, 0.678431)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 814.0
+offset_top = 299.0
+offset_right = 1057.0
+offset_bottom = 348.0
+theme_override_fonts/font = ExtResource("2_cllm0")
+theme_override_font_sizes/font_size = 50
+text = "YOU WIN"
+
+[node name="restart" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 867.0
+offset_top = 395.0
+offset_right = 1010.0
+offset_bottom = 436.0
+theme_override_fonts/font = ExtResource("2_cllm0")
+theme_override_font_sizes/font_size = 24
+text = "restart"
+
+[node name="exit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 462.0
+offset_right = 1008.0
+offset_bottom = 503.0
+theme_override_fonts/font = ExtResource("2_cllm0")
+theme_override_font_sizes/font_size = 24
+text = "exit"
+
+[node name="next" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 530.0
+offset_right = 1008.0
+offset_bottom = 571.0
+theme_override_fonts/font = ExtResource("2_cllm0")
+theme_override_font_sizes/font_size = 24
+text = "next"

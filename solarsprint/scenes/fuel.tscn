@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://3hhtvgibvmrn"]
+
+[ext_resource type="Script" path="res://scripts/fuel.gd" id="1_atolg"]
+[ext_resource type="Texture2D" uid="uid://beaxfem4kov2n" path="res://PhysicsCarGameAssets/Images/Pickups/sun.png" id="2_h56gd"]
+[ext_resource type="AudioStream" uid="uid://pfk2naeg28h3" path="res://PhysicsCarGameAssets/Audio/Fuel.wav" id="3_0beri"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bkuom"]
+radius = 80.0999
+
+[sub_resource type="Animation" id="Animation_iamr1"]
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -30, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_nqhok"]
+resource_name = "pickup"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.0666667, -31.5, -30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.433333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.433333)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_np03e"]
+_data = {
+"RESET": SubResource("Animation_iamr1"),
+"pickup": SubResource("Animation_nqhok")
+}
+
+[sub_resource type="Gradient" id="Gradient_e0iew"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2r00t"]
+gradient = SubResource("Gradient_e0iew")
+fill = 1
+fill_from = Vector2(0.538462, 0.495726)
+fill_to = Vector2(0.884615, 0.0897436)
+
+[node name="fuel" type="Area2D"]
+collision_mask = 4
+script = ExtResource("1_atolg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(100, 0)
+scale = Vector2(1.63077, 1.65)
+texture = ExtResource("2_h56gd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_bkuom")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_np03e")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0beri")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(9, 90)
+scale = Vector2(0.908041, 0.840864)
+color = Color(0.489301, 0.297172, 0.0858476, 1)
+texture = SubResource("GradientTexture2D_2r00t")
+texture_scale = 6.28
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="ready" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_ready"]

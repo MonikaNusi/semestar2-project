@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdcp7su4vq57h"]
+
+[ext_resource type="Script" path="res://gameover.gd" id="1_frgac"]
+[ext_resource type="FontFile" uid="uid://dk5y4y3togj5c" path="res://PhysicsCarGameAssets/Milker.otf" id="2_baqn6"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_frgac")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 2018.0
+offset_bottom = 1075.0
+color = Color(0.0470588, 0.0470588, 0.0470588, 0.654902)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 799.0
+offset_top = 165.0
+offset_right = 1106.0
+offset_bottom = 250.0
+theme_override_fonts/font = ExtResource("2_baqn6")
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+
+[node name="restartButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 817.0
+offset_top = 455.0
+offset_right = 1081.0
+offset_bottom = 554.0
+theme_override_font_sizes/font_size = 24
+text = "RESTART"
+
+[node name="distanceLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 843.0
+offset_top = 305.0
+offset_right = 883.0
+offset_bottom = 328.0
+text = "0m"
+
+[node name="highscoreLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 996.0
+offset_top = 308.0
+offset_right = 1036.0
+offset_bottom = 331.0
+text = "0m"

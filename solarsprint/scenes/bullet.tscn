@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://0y6ia1b7w6h4"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_v8dnq"]
+[ext_resource type="Texture2D" uid="uid://d3s1ses4seykt" path="res://PhysicsCarGameAssets/Images/Other/07.png" id="2_unwbm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtxbt"]
+radius = 7.28011
+
+[node name="bullet" type="Area2D"]
+script = ExtResource("1_v8dnq")
+speed = 5000.0
+lifetime = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(262, 135)
+scale = Vector2(0.823243, 0.926574)
+texture = ExtResource("2_unwbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(262, 135)
+shape = SubResource("CircleShape2D_wtxbt")

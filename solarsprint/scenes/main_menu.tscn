@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://1u2aemxlqym8"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_4ejyd"]
+[ext_resource type="FontFile" uid="uid://dk5y4y3togj5c" path="res://PhysicsCarGameAssets/Milker.otf" id="2_0q5ic"]
+[ext_resource type="Texture2D" uid="uid://o6nkepfbjh1v" path="res://PhysicsCarGameAssets/Images/Terrain/main menu background.png" id="2_5tyq8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iuo8p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sodjl"]
+
+[node name="MainMenu" type="Node2D"]
+position = Vector2(71, 10)
+scale = Vector2(1, 1.02405)
+script = ExtResource("1_4ejyd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -97.0
+offset_top = -42.0
+offset_right = 1919.0
+offset_bottom = 1063.0
+texture = ExtResource("2_5tyq8")
+
+[node name="startButton" type="Button" parent="."]
+offset_left = -17.0
+offset_top = 384.747
+offset_right = 405.0
+offset_bottom = 490.747
+theme_override_fonts/font = ExtResource("2_0q5ic")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iuo8p")
+text = "START"
+
+[node name="exitButton" type="Button" parent="."]
+offset_left = -20.0
+offset_top = 503.882
+offset_right = 409.0
+offset_bottom = 597.882
+theme_override_fonts/font = ExtResource("2_0q5ic")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sodjl")
+text = "EXIT"
+
+[node name="shopButton" type="Button" parent="."]
+offset_left = -20.0
+offset_top = 611.298
+offset_right = 409.0
+offset_bottom = 705.298
+theme_override_fonts/font = ExtResource("2_0q5ic")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sodjl")
+text = "SHOP"
+
+[node name="levelsButton" type="Button" parent="."]
+offset_left = 236.0
+offset_top = 513.647
+offset_right = 665.0
+offset_bottom = 607.647
+theme_override_fonts/font = ExtResource("2_0q5ic")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sodjl")
+text = "LEVELS"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 7.0
+offset_top = 666.96
+offset_right = 284.0
+offset_bottom = 1007.96
+scale = Vector2(1.51176, 1.1573)
+alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = -7.0
+offset_top = 68.356
+offset_right = 642.0
+offset_bottom = 363.356
+theme_override_constants/shadow_offset_x = 50
+theme_override_fonts/font = ExtResource("2_0q5ic")
+theme_override_font_sizes/font_size = 150
+text = "SOLAR 
+SPRINT"

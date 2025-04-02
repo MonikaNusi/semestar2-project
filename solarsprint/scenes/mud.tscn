@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct3qhsd27mdti"]
+
+[ext_resource type="Script" path="res://scenes/levels/mud.gd" id="1_oh0ax"]
+[ext_resource type="Texture2D" uid="uid://b4c2lwjnwlf16" path="res://PhysicsCarGameAssets/Images/Terrain/dirt.png" id="2_4dlle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xg86"]
+size = Vector2(225, 21)
+
+[node name="Mud" type="Area2D"]
+script = ExtResource("1_oh0ax")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, -7.5)
+shape = SubResource("RectangleShape2D_4xg86")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4dlle")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
