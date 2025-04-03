@@ -57,9 +57,9 @@ func _physics_process(delta):
 var pause_menu = null
 func _input(event):
 	if event is InputEventKey:
-		print("Key event detected!")  # Debugging line to check if key events are being detected
+		print("Key event detected!")
 		if event.pressed and event.keycode == KEY_ESCAPE:
-			print("ESC pressed!")  # Debugging line when ESC is pressed
+			print("ESC pressed!")
 			toggle_pause()
 
 func toggle_pause():
@@ -67,7 +67,7 @@ func toggle_pause():
 		print("Resuming game...")
 		get_tree().paused = false
 		if pause_menu:
-			pause_menu.queue_free()  # Remove the pause menu
+			pause_menu.queue_free()
 			pause_menu = null
 	else:
 		print("Pausing game...")

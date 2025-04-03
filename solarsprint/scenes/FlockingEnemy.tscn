@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://8eixwwsr67ig"]
+
+[ext_resource type="Texture2D" uid="uid://33ejpyojkfjr" path="res://PhysicsCarGameAssets/Images/Characters/enemy/image-removebg-preview.png" id="1_6bp86"]
+[ext_resource type="Script" path="res://scenes/flockingEnemy.gd" id="1_s0jih"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tsf8g"]
+radius = 11.0454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4widd"]
+radius = 13.0384
+
+[node name="FlockingEnemy" type="CharacterBody2D"]
+script = ExtResource("1_s0jih")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, 6.5)
+scale = Vector2(0.3, 0.27)
+texture = ExtResource("1_6bp86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 5)
+shape = SubResource("CircleShape2D_tsf8g")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(5, 6)
+shape = SubResource("CircleShape2D_4widd")

@@ -21,6 +21,17 @@ func _physics_process(delta):
 func _on_area_entered(area):
 	if has_hit:
 		return
+		
+	if area.is_in_group("enemies"):
+		has_hit = true
+		print("Bullet hit flocking enemy!")
+		
+		# Disable collision to prevent hitting more
+		$CollisionShape2D.disabled = true
+		
+		area.queue_free()  # Destroy the enemy
+		queue_free()       # Destroy the bullet
+		return
 	
 	if area.is_in_group("energy_leech"):
 		has_hit = true
@@ -32,6 +43,4 @@ func _on_area_entered(area):
 		if area.has_method("take_damage"):
 			area.take_damage()
 		
-		# Optionally delay slightly to let hit effect show
-		await get_tree().create_timer(0.01).timeout
 		queue_free()

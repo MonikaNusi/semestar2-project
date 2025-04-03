@@ -14,6 +14,7 @@ var fuel_upgraded: bool = false
 @onready var high_score_label = $UI/Control/highscore
 var distance_scaling_factor = 10
 
+@onready var flocking_enemy_scene = preload("res://scenes/FlockingEnemy.tscn")
 
 @onready var pause_button = $UI/Control/pauseButton
 var pause_menu_instance = null
@@ -120,6 +121,7 @@ func save_high_score():
 	file.store_var(high_score)
 	file.close()
 	print("High score saved: ", high_score)
+	
 
 func _notification(what):
 	if what == NOTIFICATION_PREDELETE:
