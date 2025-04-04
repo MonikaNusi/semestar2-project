@@ -10,6 +10,7 @@ func _ready():
 	add_to_group("bullet")
 	get_tree().create_timer(lifetime).timeout.connect(queue_free)
 	connect("area_entered", _on_area_entered)
+	connect("body_entered", _on_body_entered) 
 
 func set_velocity(new_velocity: Vector2):
 	velocity = new_velocity 
@@ -43,4 +44,20 @@ func _on_area_entered(area):
 		if area.has_method("take_damage"):
 			area.take_damage()
 		
+		queue_free()
+		
+func _on_body_entered(body):
+	if has_hit:
+		return
+	
+	if body.is_in_group("enemies"):
+		has_hit = true
+		print("Bullet hit flocking enemy")
+		
+		$CollisionShape2D.call_deferred("set", "disabled", true)
+
+
+		if body.has_method("take_damage"):
+			body.take_damage()
+
 		queue_free()

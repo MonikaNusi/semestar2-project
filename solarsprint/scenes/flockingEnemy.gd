@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var max_speed = 150.0
+@export var max_speed = 200.0
 @export var neighbour_radius = 100.0
 @export var separation_weight = 1.8
 @export var alignment_weight = 1.0
@@ -16,6 +16,8 @@ var manager = null
 var player = null
 var draining = false
 var follow_offset = Vector2.ZERO
+
+
 
 func _ready():
 	add_to_group("enemies")
@@ -67,8 +69,19 @@ func _process(delta):
 	var chase = Vector2.ZERO
 	if player:
 		var direction_to_player = (player.global_position - global_position).normalized()
-		chase = direction_to_player * 1.5  # weight of chasing
+		var distance_to_player = global_position.distance_to(player.global_position)
 
+		var chase_strength = 4.0
+		var chase_boost = 0.0
+
+		if distance_to_player < 150:
+			chase_strength = 6.0
+			chase_boost = 200.0  # Boost speed when close
+		else:
+			chase_strength = 4.0
+
+		chase = direction_to_player * chase_strength
+		velocity += direction_to_player * chase_boost * delta
 	# Combine behaviours
 	var steer = (
 		separation * separation_weight +
@@ -103,4 +116,10 @@ func _on_drain_finished():
 		print("Drained fuel! Player has:", player.fuel)
 
 	set_process(false)
+	queue_free()
+	
+func take_damage():
+	if draining:
+		return
+	print("Flocking enemy took damage!")
 	queue_free()

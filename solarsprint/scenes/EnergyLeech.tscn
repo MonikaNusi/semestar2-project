@@ -50,7 +50,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a076w"]
-radius = 28.3812
+radius = 46.0533
 
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(9, 9)
@@ -78,6 +78,6 @@ target_position = Vector2(0, 200)
 position = Vector2(-34, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-4, -27)
+position = Vector2(34, -46)
 scale = Vector2(-0.913333, 1.6)
 shape = SubResource("CircleShape2D_a076w")
