@@ -65,6 +65,18 @@ func _physics_process(delta):
 		high_score = distance_travelled
 		high_score_label.text = "High Score: " + str(high_score) + "m"
 		save_high_score()
+		
+	var restore_radius = 100  # only platforms within 100px behind the car
+
+	for platform in get_tree().get_nodes_in_group("platform"):
+		if platform.restored:
+			continue
+
+		var platform_pos = platform.global_position
+		var distance = car.global_position.distance_to(platform_pos)
+
+		if platform_pos.x < car.global_position.x and distance < restore_radius:
+			platform.restore()
 
 
 
@@ -108,7 +120,7 @@ func update_fuel_UI(value):
 		var base_width = 100  # width for 100 max fuel
 		var new_width = base_width + (player.max_fuel - 100) * 1.5
 		bar.size.x = new_width 
-		print("Fuel bar resized to:", new_width)
+		#print("Fuel bar resized to:", new_width)
 		
 	if value == 0:
 		$UI/fuel/AnimationPlayer.play("alarm")
@@ -120,7 +132,7 @@ func save_high_score():
 	var file = FileAccess.open("user://highscore.save", FileAccess.WRITE)
 	file.store_var(high_score)
 	file.close()
-	print("High score saved: ", high_score)
+	#print("High score saved: ", high_score)
 	
 
 func _notification(what):

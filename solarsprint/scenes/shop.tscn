@@ -33,6 +33,24 @@ theme_override_fonts/font = ExtResource("2_inaq5")
 theme_override_font_sizes/font_size = 24
 text = "Upgrade Fuel Tank (Level 0) - 100 coins"
 
+[node name="WheelPowerButton" type="Button" parent="."]
+offset_left = 609.0
+offset_top = 269.0
+offset_right = 1204.0
+offset_bottom = 301.0
+theme_override_fonts/font = ExtResource("2_inaq5")
+theme_override_font_sizes/font_size = 24
+text = "Upgrade wheel power (Level 0) - 100 coins"
+
+[node name="DoubleBulletButton" type="Button" parent="."]
+offset_left = 609.0
+offset_top = 327.0
+offset_right = 1256.0
+offset_bottom = 359.0
+theme_override_fonts/font = ExtResource("2_inaq5")
+theme_override_font_sizes/font_size = 24
+text = "Unlock Double Bullets - 300 Coins"
+
 [node name="Label2" type="Label" parent="."]
 offset_left = 20.0
 offset_top = 15.0
@@ -40,3 +58,6 @@ offset_right = 107.0
 offset_bottom = 49.0
 theme_override_font_sizes/font_size = 24
 text = "coins: 0"
+
+[connection signal="pressed" from="WheelPowerButton" to="." method="_on_wheel_power_button_pressed"]
+[connection signal="pressed" from="DoubleBulletButton" to="." method="_on_wheel_power_button_pressed"]

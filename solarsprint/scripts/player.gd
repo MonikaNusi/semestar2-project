@@ -1,7 +1,8 @@
 extends RigidBody2D
 
 var wheels = []
-var speed = 60000
+var base_speed = 60000
+var speed = base_speed 
 var max_speed = 50
 
 var fuel = 100
@@ -9,6 +10,7 @@ var max_fuel = 100
 var dead = false
 
 var wheel_power_factor = 1.0
+var base_wheel_power = 1.0
 
 @onready var level_manager = get_parent()
 
@@ -19,7 +21,16 @@ func _ready():
 	if config.load("user://player_data.cfg") == OK:
 		var level = config.get_value("upgrades", "fuel_tank_level", 0)
 		upgrade_fuel_tank(level * 20)
-		print("Applied Fuel Tank Upgrade: Level", level)
+		#print("Applied Fuel Tank Upgrade: Level", level)
+		
+		var wheel_level = config.get_value("upgrades", "wheel_power_level", 0)
+		wheel_power_factor = base_wheel_power + wheel_level * 0.2
+		speed = base_speed * (1.0 + wheel_level * 0.1)
+
+		# Stability scaling
+		angular_damp = 0.1 + wheel_level * 0.5  # very low at level 0, high later
+		linear_damp = 0.05 + wheel_level * 0.3  # air resistance
+		print("Applied Wheel Power Upgrade: Level", wheel_level)
 	
 	fuel = max_fuel  # fill up
 	
@@ -27,37 +38,40 @@ func _ready():
 	level_manager.update_fuel_UI(fuel)
 
 func _physics_process(delta):
-	if fuel > 0 && !dead:
+	if fuel > 0 and !dead:
 		$gameOverTimer.stop()
-		
+
 		if Input.is_action_pressed("ui_right"):
-			apply_torque_impulse(-10500 * delta * 60)
 			use_fuel(delta)
 			for wheel in wheels:
 				if wheel.angular_velocity < max_speed:
-					wheel.apply_torque_impulse(speed * delta * 60)
+					wheel.apply_torque_impulse(speed * delta * 60 * wheel_power_factor)
 
 		if Input.is_action_pressed("ui_left"):
-			apply_torque_impulse(6000 * delta * 60)
 			use_fuel(delta)
 			for wheel in wheels:
 				if wheel.angular_velocity > -max_speed:
-					wheel.apply_torque_impulse(-speed * delta * 60)
+					wheel.apply_torque_impulse(-speed * delta * 60 * wheel_power_factor)
+
+		# --- Downforce only applies as upgrades increase ---
+		if wheel_power_factor > 1.0:
+			var angle_force = abs(rotation_degrees) / 90.0
+			var downforce = 1000 * angle_force * (wheel_power_factor - 1.0)
+			apply_central_force(Vector2(0, downforce))
+
+		# --- Mid-air stabilisation grows with level ---
+		if linear_velocity.y > 0 and wheel_power_factor > 1.0:
+			var correction_torque = -rotation_degrees * 10.0 * (wheel_power_factor - 1.0)
+			apply_torque_impulse(correction_torque * delta)
 	else:
 		if $gameOverTimer.is_stopped():
 			$gameOverTimer.start()
 			show_game_over_screen()
 
-	if ($head.rotation_degrees > 90 || $head.rotation_degrees < -90) && !dead:
-		dead = true
-		$head/headSpring.node_b = ""
-		show_game_over_screen()
-		
-		
 var pause_menu = null
 func _input(event):
 	if event is InputEventKey:
-		print("Key event detected!")
+		#print("Key event detected!")
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			print("ESC pressed!")
 			toggle_pause()

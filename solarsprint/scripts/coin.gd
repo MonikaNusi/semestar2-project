@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var value: int = 5
+@export var value: int = 100
 var CorrectSound = preload("res://PhysicsCarGameAssets/Audio/Coin.wav")
 @onready var pickup = $AudioStreamPlayer2D
 func _ready() -> void:
