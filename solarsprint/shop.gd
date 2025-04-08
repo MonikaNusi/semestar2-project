@@ -4,10 +4,10 @@ var coins: int = 0
 
 var fuel_tank_level: int = 0
 const FUEL_UPGRADE_AMOUNT = 20
-const FUEL_UPGRADE_COST = 100
+#const FUEL_UPGRADE_COST = 100
 
 var wheel_power_level: int = 0
-const WHEEL_UPGRADE_COST = 150 
+#const WHEEL_UPGRADE_COST = 150 
 
 var double_bullet_unlocked: bool = false
 const DOUBLE_BULLET_COST = 300
@@ -77,8 +77,9 @@ func _on_back_button_pressed():
 	
 func _on_fuel_tank_button_pressed():
 	if fuel_tank_level < 10:
-		if coins >= FUEL_UPGRADE_COST:
-			coins -= FUEL_UPGRADE_COST
+		var cost = get_fuel_upgrade_cost(fuel_tank_level)
+		if coins >= cost:
+			coins -= cost
 			fuel_tank_level += 1
 			save_data()
 			update_coin_label()
@@ -92,14 +93,19 @@ func _on_fuel_tank_button_pressed():
 func update_fuel_button_label():
 	if fuel_tank_level >= 10:
 		$FuelTankButton.text = "Fuel Tank MAXED (Level 10)"
+		$FuelTankButton.disabled = true 
 	else:
-		$FuelTankButton.text = "Upgrade Fuel Tank (Level " + str(fuel_tank_level) + ") - " + str(FUEL_UPGRADE_COST) + " coins"
-
+		var cost = get_fuel_upgrade_cost(fuel_tank_level)
+		$FuelTankButton.text = "Upgrade Fuel Tank (Level " + str(fuel_tank_level) + ") - " + str(cost) + " coins"
+		$FuelTankButton.disabled = false
+func get_fuel_upgrade_cost(level: int) -> int:
+	return 100 + level * 50
 
 func _on_wheel_power_button_pressed():
 	if wheel_power_level < 10:
-		if coins >= WHEEL_UPGRADE_COST:
-			coins -= WHEEL_UPGRADE_COST
+		var cost = get_wheel_upgrade_cost(wheel_power_level)
+		if coins >= cost:
+			coins -= cost
 			wheel_power_level += 1
 			save_data()
 			update_coin_label()
@@ -110,11 +116,18 @@ func _on_wheel_power_button_pressed():
 	else:
 		print("Wheel power is already maxed out!")
 
+func get_wheel_upgrade_cost(level: int) -> int:
+	# Level 1 upgrade = 150, increases by 50 each level
+	return 100 + level * 50
+
 func update_wheel_button_label():
 	if wheel_power_level >= 10:
 		$WheelPowerButton.text = "Wheel Power MAXED (Level 10)"
+		$WheelPowerButton.disabled = true
 	else:
-		$WheelPowerButton.text = "Upgrade Wheel Power (Level " + str(wheel_power_level) + ") - " + str(WHEEL_UPGRADE_COST) + " coins"
+		var cost = get_wheel_upgrade_cost(wheel_power_level)
+		$WheelPowerButton.text = "Upgrade Wheel Power (Level " + str(wheel_power_level) + ") - " + str(cost) + " coins"
+		$WheelPowerButton.disabled = false
 
 func _on_double_bullet_button_pressed():
 	if double_bullet_unlocked:
