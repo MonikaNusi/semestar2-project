@@ -12,7 +12,16 @@ var dead = false
 var wheel_power_factor = 1.0
 var base_wheel_power = 1.0
 
+var speed_boost_enabled: bool = false
+var speed_boosting: bool = false
+var speed_boost_cooldown: float = 5.0
+var speed_boost_duration: float = 2.0
+var boost_timer = null
+var cooldown_timer = null
+
 @onready var level_manager = get_parent()
+
+@onready var boost_flame = $boost
 
 func _ready():
 	wheels = get_tree().get_nodes_in_group("wheel")
@@ -31,6 +40,21 @@ func _ready():
 		angular_damp = 0.1 + wheel_level * 0.5  # very low at level 0, high later
 		linear_damp = 0.05 + wheel_level * 0.3  # air resistance
 		print("Applied Wheel Power Upgrade: Level", wheel_level)
+		
+		speed_boost_enabled = config.get_value("upgrades", "speed_boost_unlocked", false)
+
+	
+	boost_timer = Timer.new()
+	boost_timer.wait_time = speed_boost_duration
+	boost_timer.one_shot = true
+	boost_timer.connect("timeout", Callable(self, "_on_boost_timeout"))
+	add_child(boost_timer)
+
+	cooldown_timer = Timer.new()
+	cooldown_timer.wait_time = speed_boost_cooldown
+	cooldown_timer.one_shot = true
+	cooldown_timer.connect("timeout", Callable(self, "_on_cooldown_timeout"))
+	add_child(cooldown_timer)
 	
 	fuel = max_fuel  # fill up
 	
@@ -53,7 +77,12 @@ func _physics_process(delta):
 				if wheel.angular_velocity > -max_speed:
 					wheel.apply_torque_impulse(-speed * delta * 60 * wheel_power_factor)
 
-		# --- Downforce only applies as upgrades increase ---
+
+		if speed_boost_enabled and Input.is_action_just_pressed("boost") and not speed_boosting and cooldown_timer.is_stopped():
+			if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
+				start_speed_boost()
+
+
 		if wheel_power_factor > 1.0:
 			var angle_force = abs(rotation_degrees) / 90.0
 			var downforce = 1000 * angle_force * (wheel_power_factor - 1.0)
@@ -66,7 +95,7 @@ func _physics_process(delta):
 	else:
 		if $gameOverTimer.is_stopped():
 			$gameOverTimer.start()
-			show_game_over_screen()
+			#show_game_over_screen()
 
 var pause_menu = null
 func _input(event):
@@ -103,6 +132,7 @@ func use_fuel(delta):
 
 func _on_game_over_timer_timeout() -> void:
 	get_tree().paused = true
+	show_game_over_screen()
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -120,7 +150,10 @@ var game_win_screen = null
 
 func show_game_win_screen():
 	print("Game Won!")
-
+	level_manager.distance_label.visible = false
+	level_manager.high_score_label.visible = false
+	level_manager.get_node("UI/coin").visible = false
+	level_manager.get_node("UI/fuel").visible = false
 	# Save progress directly (no GameState needed)
 	var config = ConfigFile.new()
 	var err = config.load("user://progress.cfg")
@@ -128,18 +161,24 @@ func show_game_win_screen():
 		print("Creating new progress config")
 
 	config.set_value("progress", "level_1_completed", true)
+	config.set_value("progress", "level_2_completed", true)
 	config.save("user://progress.cfg")
 
 	if game_win_screen == null:
 		game_win_screen = load("res://scenes/game_win.tscn").instantiate()
 		game_win_screen.name = "GameWinScreen"
 		get_tree().get_root().add_child(game_win_screen)
+		game_win_screen.update_scores(level_manager.distance_travelled, level_manager.high_score)
 		get_tree().paused = true
 
 var game_over_screen = null
 
 func show_game_over_screen():
 	print("Loading Game Over screen...")
+	level_manager.distance_label.visible = false
+	level_manager.high_score_label.visible = false
+	level_manager.get_node("UI/coin").visible = false
+	level_manager.get_node("UI/fuel").visible = false
 	if game_over_screen == null:  # Prevent duplicates
 		game_over_screen = load("res://scenes/game_over.tscn").instantiate()
 		if game_over_screen:
@@ -161,3 +200,29 @@ func use_fuel_for_shooting():
 	fuel -= fuel_cost
 	fuel = clamp(fuel, 0, max_fuel)
 	get_parent().update_fuel_UI(fuel)
+	
+func start_speed_boost():
+	print("Boost activated!")
+	speed_boosting = true
+	boost_flame.visible = true
+	boost_flame.play("flame")
+
+	var boost_strength = 10000.0  # Tweak this as needed
+	var boost_direction = Vector2.RIGHT.rotated(rotation)  # forward in car's direction
+	apply_central_impulse(boost_direction * boost_strength)
+
+	boost_timer.start()
+	
+func _on_boost_timeout():
+	print("Boost ended.")
+	speed_boosting = false
+	speed = base_speed * (1.0 + (wheel_power_factor - base_wheel_power) / 0.2)  # restore speed
+	boost_flame.visible = false
+	boost_flame.stop()
+	cooldown_timer.start()
+	
+func _on_cooldown_timeout():
+	print("Boost cooldown finished.")
+
+func is_boosting() -> bool:
+	return speed_boosting

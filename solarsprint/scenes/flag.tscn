@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwnptb8fyintp"]
 
 [ext_resource type="Script" path="res://flag.gd" id="1_fh5dy"]
-[ext_resource type="Texture2D" uid="uid://cu4dpmn2gcjl6" path="res://PhysicsCarGameAssets/Images/Characters/headd.png" id="2_j547y"]
+[ext_resource type="Texture2D" uid="uid://63d88k28g06a" path="res://PhysicsCarGameAssets/Images/Other/flag.png" id="2_v0n68"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3cnw"]
 radius = 52.0
@@ -11,9 +11,10 @@ height = 126.0
 script = ExtResource("1_fh5dy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(204, 144)
+position = Vector2(300, 151)
 shape = SubResource("CapsuleShape2D_w3cnw")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(-47, 108)
-texture = ExtResource("2_j547y")
+position = Vector2(16, 7)
+scale = Vector2(0.533968, 0.534868)
+texture = ExtResource("2_v0n68")

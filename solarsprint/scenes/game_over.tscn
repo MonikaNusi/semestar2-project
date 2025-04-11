@@ -14,41 +14,64 @@ offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 0
-offset_right = 2018.0
-offset_bottom = 1075.0
-color = Color(0.0470588, 0.0470588, 0.0470588, 0.654902)
+offset_left = -14.0
+offset_top = -10.0
+offset_right = 1995.0
+offset_bottom = 1114.0
+color = Color(0.0470588, 0.0470588, 0.0470588, 0.827451)
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 799.0
-offset_top = 165.0
-offset_right = 1106.0
-offset_bottom = 250.0
+offset_left = 622.0
+offset_top = 60.0
+offset_right = 1282.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(0.487147, 0.0235506, 0.0468242, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 10
 theme_override_fonts/font = ExtResource("2_baqn6")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 100
 text = "GAME OVER"
 
 [node name="restartButton" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 817.0
-offset_top = 455.0
+offset_top = 673.0
 offset_right = 1081.0
-offset_bottom = 554.0
-theme_override_font_sizes/font_size = 24
+offset_bottom = 773.0
+theme_override_fonts/font = ExtResource("2_baqn6")
+theme_override_font_sizes/font_size = 40
 text = "RESTART"
 
 [node name="distanceLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 843.0
-offset_top = 305.0
-offset_right = 883.0
-offset_bottom = 328.0
+offset_left = 709.0
+offset_top = 197.0
+offset_right = 749.0
+offset_bottom = 221.0
+theme_override_fonts/font = ExtResource("2_baqn6")
+theme_override_font_sizes/font_size = 24
 text = "0m"
 
 [node name="highscoreLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 996.0
-offset_top = 308.0
-offset_right = 1036.0
-offset_bottom = 331.0
+offset_left = 1008.0
+offset_top = 196.0
+offset_right = 1048.0
+offset_bottom = 220.0
+theme_override_fonts/font = ExtResource("2_baqn6")
+theme_override_font_sizes/font_size = 24
 text = "0m"
+
+[node name="exit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 814.0
+offset_top = 796.0
+offset_right = 1078.0
+offset_bottom = 896.0
+theme_override_fonts/font = ExtResource("2_baqn6")
+theme_override_font_sizes/font_size = 40
+text = "exit"

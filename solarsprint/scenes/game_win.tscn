@@ -22,40 +22,66 @@ color = Color(0, 0, 0, 0.678431)
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 814.0
-offset_top = 299.0
-offset_right = 1057.0
-offset_bottom = 348.0
+offset_left = 675.0
+offset_top = 54.0
+offset_right = 1180.0
+offset_bottom = 154.0
+theme_override_colors/font_color = Color(0.306915, 0.47247, 0.234299, 1)
+theme_override_colors/font_shadow_color = Color(0.0549636, 0.155495, 0.0660452, 1)
+theme_override_colors/font_outline_color = Color(0.0169953, 0.0571284, 9.02452e-09, 1)
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 10
 theme_override_fonts/font = ExtResource("2_cllm0")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 100
 text = "YOU WIN"
 
 [node name="restart" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 867.0
-offset_top = 395.0
-offset_right = 1010.0
-offset_bottom = 436.0
+offset_left = 767.0
+offset_top = 651.0
+offset_right = 1031.0
+offset_bottom = 751.0
 theme_override_fonts/font = ExtResource("2_cllm0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 40
 text = "restart"
 
 [node name="exit" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 870.0
-offset_top = 462.0
-offset_right = 1008.0
-offset_bottom = 503.0
+offset_left = 766.0
+offset_top = 768.0
+offset_right = 1030.0
+offset_bottom = 868.0
 theme_override_fonts/font = ExtResource("2_cllm0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 40
 text = "exit"
 
 [node name="next" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 870.0
-offset_top = 530.0
-offset_right = 1008.0
-offset_bottom = 571.0
+offset_left = 764.0
+offset_top = 884.0
+offset_right = 1028.0
+offset_bottom = 984.0
+theme_override_fonts/font = ExtResource("2_cllm0")
+theme_override_font_sizes/font_size = 40
+text = "next"
+
+[node name="distanceLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 185.0
+offset_right = 718.0
+offset_bottom = 209.0
 theme_override_fonts/font = ExtResource("2_cllm0")
 theme_override_font_sizes/font_size = 24
-text = "next"
+text = "0m"
+
+[node name="highscoreLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 189.0
+offset_right = 1026.0
+offset_bottom = 213.0
+theme_override_fonts/font = ExtResource("2_cllm0")
+theme_override_font_sizes/font_size = 24
+text = "0m"

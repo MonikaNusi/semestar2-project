@@ -12,6 +12,9 @@ var wheel_power_level: int = 0
 var double_bullet_unlocked: bool = false
 const DOUBLE_BULLET_COST = 300
 
+var speed_boost_unlocked: bool = false
+const SPEED_BOOST_COST = 250
+
 func _ready():
 	$backButton.connect("pressed", Callable(self, "_on_back_button_pressed"))
 	$FuelTankButton.connect("pressed", Callable(self, "_on_fuel_tank_button_pressed"))
@@ -20,10 +23,9 @@ func _ready():
 	#load_coins()
 	update_coin_label()  
 	update_fuel_button_label() 
-	
 	update_wheel_button_label()
-	
 	update_double_bullet_button_label()
+	update_speed_boost_button_label() 
 
 func load_coins():
 	var config = ConfigFile.new()
@@ -33,7 +35,7 @@ func load_coins():
 	else:
 		coins = 0
 		print("Failed to load coins. Starting at 0.")
-
+	
 func save_data():
 	var config = ConfigFile.new()
 	
@@ -49,7 +51,10 @@ func save_data():
 	config.set_value("upgrades", "wheel_power_level", wheel_power_level)
 	
 	config.set_value("upgrades", "wheel_power_level", wheel_power_level)
-	config.set_value("upgrades", "double_bullet_unlocked", double_bullet_unlocked)  # Save flag
+	config.set_value("upgrades", "double_bullet_unlocked", double_bullet_unlocked)
+	
+	config.set_value("upgrades", "speed_boost_unlocked", speed_boost_unlocked)
+	
 	config.save("user://player_data.cfg")
 	
 	config.save("user://player_data.cfg")
@@ -68,6 +73,7 @@ func load_data():
 		
 	wheel_power_level = config.get_value("upgrades", "wheel_power_level", 0)
 	double_bullet_unlocked = config.get_value("upgrades", "double_bullet_unlocked", false)
+	speed_boost_unlocked = config.get_value("upgrades", "speed_boost_unlocked", false)
 
 func update_coin_label():
 	$Label2.text = "Coins: " + str(coins)
@@ -92,11 +98,11 @@ func _on_fuel_tank_button_pressed():
 
 func update_fuel_button_label():
 	if fuel_tank_level >= 10:
-		$FuelTankButton.text = "Fuel Tank MAXED (Level 10)"
+		$FuelTankButton.text = "solar panel MAXED (Level 10)"
 		$FuelTankButton.disabled = true 
 	else:
 		var cost = get_fuel_upgrade_cost(fuel_tank_level)
-		$FuelTankButton.text = "Upgrade Fuel Tank (Level " + str(fuel_tank_level) + ") - " + str(cost) + " coins"
+		$FuelTankButton.text = "Upgrade solar panel (Level " + str(fuel_tank_level) + ") - " + str(cost) + " coins"
 		$FuelTankButton.disabled = false
 func get_fuel_upgrade_cost(level: int) -> int:
 	return 100 + level * 50
@@ -152,3 +158,27 @@ func update_double_bullet_button_label():
 	else:
 		$DoubleBulletButton.text = "Unlock Double Bullets - " + str(DOUBLE_BULLET_COST) + " Coins"
 		$DoubleBulletButton.disabled = false
+
+
+func _on_speed_boost_button_pressed() -> void:
+	if speed_boost_unlocked:
+		print("Speed Boost already unlocked!")
+		return
+
+	if coins >= SPEED_BOOST_COST:
+		coins -= SPEED_BOOST_COST
+		speed_boost_unlocked = true
+		save_data()
+		update_coin_label()
+		update_speed_boost_button_label()
+		print("Speed Boost Unlocked!")
+	else:
+		print("Not enough coins for Speed Boost!")
+
+func update_speed_boost_button_label():
+	if speed_boost_unlocked:
+		$SpeedBoostButton.text = "Speed Boost UNLOCKED!"
+		$SpeedBoostButton.disabled = true
+	else:
+		$SpeedBoostButton.text = "Unlock Speed Boost - " + str(SPEED_BOOST_COST) + " Coins"
+		$SpeedBoostButton.disabled = false

@@ -30,8 +30,8 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
-		velocity.y = 0
-
+		velocity.y = -20
+	
 	move_and_slide()
 
 	if global_position.distance_to(player.global_position) < 30:

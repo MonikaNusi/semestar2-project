@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var max_speed = 200.0
+@export var max_speed = 400.0
 @export var neighbour_radius = 100.0
 @export var separation_weight = 1.8
 @export var alignment_weight = 1.0
@@ -17,10 +17,13 @@ var player = null
 var draining = false
 var follow_offset = Vector2.ZERO
 
+@onready var animation = $AnimationPlayer
+
 
 
 func _ready():
 	add_to_group("enemies")
+	animation.play("fly")
 	$DetectionArea.connect("body_entered", Callable(self, "_on_DetectionArea_body_entered"))
 	print("Flocking enemy ready. Player is:", player)
 	await get_tree().process_frame

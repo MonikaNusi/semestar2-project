@@ -11,8 +11,10 @@
 script = ExtResource("1_0csnf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 2018.0
-offset_bottom = 1075.0
+offset_left = -17.0
+offset_top = -35.0
+offset_right = 2001.0
+offset_bottom = 1040.0
 color = Color(0.0470588, 0.0470588, 0.0470588, 0.654902)
 
 [node name="Label" type="Label" parent="."]
@@ -40,7 +42,7 @@ offset_right = 646.0
 offset_bottom = 327.0
 theme_override_fonts/font = ExtResource("2_inaq5")
 theme_override_font_sizes/font_size = 24
-text = "Upgrade Fuel Tank (Level 0) - 100 coins"
+text = "Upgrade solar panel (Level 0) - 100 coins"
 
 [node name="WheelPowerButton" type="Button" parent="."]
 offset_left = 47.0
@@ -59,6 +61,15 @@ offset_bottom = 450.0
 theme_override_fonts/font = ExtResource("2_inaq5")
 theme_override_font_sizes/font_size = 24
 text = "Unlock Double Bullets - 300 Coins"
+
+[node name="SpeedBoostButton" type="Button" parent="."]
+offset_left = 46.0
+offset_top = 485.0
+offset_right = 693.0
+offset_bottom = 517.0
+theme_override_fonts/font = ExtResource("2_inaq5")
+theme_override_font_sizes/font_size = 24
+text = "Unlock Speed boost - 300 Coins"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 20.0
@@ -95,3 +106,4 @@ texture = ExtResource("7_fwjt3")
 
 [connection signal="pressed" from="WheelPowerButton" to="." method="_on_wheel_power_button_pressed"]
 [connection signal="pressed" from="DoubleBulletButton" to="." method="_on_wheel_power_button_pressed"]
+[connection signal="pressed" from="SpeedBoostButton" to="." method="_on_speed_boost_button_pressed"]

@@ -1,28 +1,73 @@
-[gd_scene load_steps=5 format=3 uid="uid://8eixwwsr67ig"]
+[gd_scene load_steps=8 format=3 uid="uid://8eixwwsr67ig"]
 
-[ext_resource type="Texture2D" uid="uid://33ejpyojkfjr" path="res://PhysicsCarGameAssets/Images/Characters/enemy/image-removebg-preview.png" id="1_6bp86"]
 [ext_resource type="Script" path="res://scenes/flockingEnemy.gd" id="1_s0jih"]
+[ext_resource type="Texture2D" uid="uid://boi7q66kyc52e" path="res://PhysicsCarGameAssets/Images/Characters/bee1.png" id="2_nls85"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tsf8g"]
-radius = 11.0454
+radius = 17.1172
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4widd"]
 radius = 13.0384
+
+[sub_resource type="Animation" id="Animation_hfhxj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_38mtk"]
+resource_name = "fly"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7wtgn"]
+_data = {
+"RESET": SubResource("Animation_hfhxj"),
+"fly": SubResource("Animation_38mtk")
+}
 
 [node name="FlockingEnemy" type="CharacterBody2D"]
 script = ExtResource("1_s0jih")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5, 6.5)
-scale = Vector2(0.3, 0.27)
-texture = ExtResource("1_6bp86")
+position = Vector2(24, 7)
+scale = Vector2(0.211639, 0.190475)
+texture = ExtResource("2_nls85")
+hframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5, 5)
 shape = SubResource("CircleShape2D_tsf8g")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+scale = Vector2(1.36, 1.36)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(5, 6)
+position = Vector2(3.67647, 4.41177)
 shape = SubResource("CircleShape2D_4widd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7wtgn")
+}

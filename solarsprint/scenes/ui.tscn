@@ -113,9 +113,9 @@ show_percentage = false
 
 [node name="alarm" type="TextureRect" parent="fuel"]
 layout_mode = 0
-offset_left = 334.373
+offset_left = 521.424
 offset_top = 138.729
-offset_right = 446.373
+offset_right = 633.424
 offset_bottom = 236.729
 texture = ExtResource("4_p5cms")
 expand_mode = 1
@@ -141,9 +141,9 @@ text = "pause"
 
 [node name="distance" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 615.0
+offset_left = 763.0
 offset_top = 39.0
-offset_right = 718.0
+offset_right = 866.0
 offset_bottom = 90.0
 theme_override_fonts/font = ExtResource("2_08mq7")
 theme_override_font_sizes/font_size = 24
@@ -151,9 +151,9 @@ text = "0m"
 
 [node name="highscore" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 920.0
+offset_left = 1068.0
 offset_top = 37.0
-offset_right = 1003.0
+offset_right = 1151.0
 offset_bottom = 106.0
 theme_override_fonts/font = ExtResource("2_08mq7")
 theme_override_font_sizes/font_size = 24

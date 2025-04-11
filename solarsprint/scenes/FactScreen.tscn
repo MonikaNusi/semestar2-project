@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://mxvtignqoh0e"]
+
+[ext_resource type="Script" path="res://scenes/fact_screen.gd" id="1_dtqcp"]
+[ext_resource type="FontFile" uid="uid://dk5y4y3togj5c" path="res://PhysicsCarGameAssets/Milker.otf" id="2_p5im6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mav32"]
+bg_color = Color(0.0958718, 0.164199, 0.0959003, 0.403922)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_offset = Vector2(0, 10)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_dtqcp")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 88.0
+offset_right = 40.0
+offset_bottom = 128.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 180.0
+offset_right = 1607.0
+offset_bottom = 524.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mav32")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 214.0
+offset_right = 690.0
+offset_bottom = 238.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_p5im6")
+theme_override_font_sizes/font_size = 24
+text = "Did you know?"
+
+[node name="FactLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 290.0
+offset_right = 1428.0
+offset_bottom = 390.0
+theme_override_fonts/font = ExtResource("2_p5im6")
+theme_override_font_sizes/font_size = 24
+
+[node name="NextButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 937.0
+offset_top = 423.0
+offset_right = 1015.0
+offset_bottom = 455.0
+theme_override_fonts/font = ExtResource("2_p5im6")
+theme_override_font_sizes/font_size = 24
+text = "next"

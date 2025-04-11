@@ -15,6 +15,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="level1" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 245.0
 offset_top = 333.0
 offset_right = 674.0
@@ -25,6 +26,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_4hfjq")
 text = "LEVEL 1"
 
 [node name="level2" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 620.0
 offset_top = 332.0
 offset_right = 1049.0
@@ -34,10 +36,22 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4hfjq")
 text = "LEVEL 2"
 
+[node name="level3" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 1025.0
+offset_top = 332.0
+offset_right = 1454.0
+offset_bottom = 426.0
+theme_override_fonts/font = ExtResource("2_p7bnm")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4hfjq")
+text = "LEVEL 3"
+
 [node name="backButton" type="Button" parent="Control"]
-offset_left = 431.0
+layout_mode = 0
+offset_left = 619.0
 offset_top = 506.0
-offset_right = 860.0
+offset_right = 1048.0
 offset_bottom = 600.0
 theme_override_fonts/font = ExtResource("2_p7bnm")
 theme_override_font_sizes/font_size = 50
