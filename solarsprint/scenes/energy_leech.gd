@@ -101,7 +101,6 @@ func take_damage():
 
 	set_collision_layer(0)
 	set_collision_mask(0)
-	#$DetectionArea.monitoring = false
 
 	print("Leech took damage!")
 	queue_free()

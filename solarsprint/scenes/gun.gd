@@ -38,7 +38,7 @@ func shoot():
 		player.use_fuel_for_shooting()
 
 		if double_bullet_unlocked:
-			# Fire second bullet after a short delay (e.g. 0.08 seconds)
+			# Fire second bullet after a short delay
 			var delay = 0.08
 			var offset = Vector2(0, 10).rotated(rotation)
 			get_tree().create_timer(delay).timeout.connect(func():

@@ -597,9 +597,16 @@ stream = ExtResource("27_y6csq")
 autoplay = true
 
 [node name="flag" parent="." instance=ExtResource("2_te4uw")]
-position = Vector2(110553, 1679)
+position = Vector2(110553, 1751)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+offset_left = -4548.0
+offset_top = 808.0
+offset_right = 119639.0
+offset_bottom = 13928.0
+color = Color(0.121569, 0.12549, 0.105882, 1)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(5300, 0)

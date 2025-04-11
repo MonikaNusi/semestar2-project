@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3y5hfdujeeaf"]
+[gd_scene load_steps=9 format=3 uid="uid://d3y5hfdujeeaf"]
 
 [ext_resource type="Script" path="res://scenes/level_select.gd" id="1_ndvu8"]
 [ext_resource type="FontFile" uid="uid://dk5y4y3togj5c" path="res://PhysicsCarGameAssets/Milker.otf" id="2_p7bnm"]
+[ext_resource type="Texture2D" uid="uid://bo33pamkudoxl" path="res://PhysicsCarGameAssets/Images/Terrain/mountain/WCP_1.png" id="3_wdcwa"]
+[ext_resource type="Texture2D" uid="uid://bexdu5wxp81xw" path="res://PhysicsCarGameAssets/Images/Terrain/mountain/WCP_2.png" id="4_0du41"]
+[ext_resource type="Texture2D" uid="uid://brd8hyp8vj381" path="res://PhysicsCarGameAssets/Images/Terrain/mountain/WCP_3.png" id="5_cx68t"]
+[ext_resource type="Texture2D" uid="uid://kit36oasp3ro" path="res://PhysicsCarGameAssets/Images/Terrain/mountain/WCP_4.png" id="6_1g17e"]
+[ext_resource type="Texture2D" uid="uid://cy5fwhiorh2yi" path="res://PhysicsCarGameAssets/Images/Terrain/mountain/WCP_5.png" id="7_ttcld"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hfjq"]
 
@@ -16,9 +21,9 @@ offset_bottom = 40.0
 
 [node name="level1" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 245.0
+offset_left = 243.0
 offset_top = 333.0
-offset_right = 674.0
+offset_right = 672.0
 offset_bottom = 427.0
 theme_override_fonts/font = ExtResource("2_p7bnm")
 theme_override_font_sizes/font_size = 50
@@ -27,9 +32,9 @@ text = "LEVEL 1"
 
 [node name="level2" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 620.0
+offset_left = 677.0
 offset_top = 332.0
-offset_right = 1049.0
+offset_right = 1106.0
 offset_bottom = 426.0
 theme_override_fonts/font = ExtResource("2_p7bnm")
 theme_override_font_sizes/font_size = 50
@@ -38,9 +43,9 @@ text = "LEVEL 2"
 
 [node name="level3" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 1025.0
+offset_left = 1204.0
 offset_top = 332.0
-offset_right = 1454.0
+offset_right = 1633.0
 offset_bottom = 426.0
 theme_override_fonts/font = ExtResource("2_p7bnm")
 theme_override_font_sizes/font_size = 50
@@ -49,11 +54,55 @@ text = "LEVEL 3"
 
 [node name="backButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 619.0
+offset_left = 751.0
 offset_top = 506.0
-offset_right = 1048.0
+offset_right = 1180.0
 offset_bottom = 600.0
 theme_override_fonts/font = ExtResource("2_p7bnm")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4hfjq")
 text = "BACK"
+
+[node name="Wcp1" type="Sprite2D" parent="."]
+position = Vector2(535, 833)
+texture = ExtResource("3_wdcwa")
+
+[node name="Wcp2" type="Sprite2D" parent="."]
+position = Vector2(1586, 828)
+texture = ExtResource("3_wdcwa")
+
+[node name="Wcp3" type="Sprite2D" parent="."]
+position = Vector2(384, 826)
+texture = ExtResource("4_0du41")
+
+[node name="Wcp4" type="Sprite2D" parent="."]
+position = Vector2(384, 826)
+texture = ExtResource("4_0du41")
+
+[node name="Wcp5" type="Sprite2D" parent="."]
+position = Vector2(1437, 841)
+texture = ExtResource("4_0du41")
+
+[node name="Wcp6" type="Sprite2D" parent="."]
+position = Vector2(442, 823)
+texture = ExtResource("5_cx68t")
+
+[node name="Wcp7" type="Sprite2D" parent="."]
+position = Vector2(1483, 831)
+texture = ExtResource("5_cx68t")
+
+[node name="Wcp8" type="Sprite2D" parent="."]
+position = Vector2(482, 823)
+texture = ExtResource("6_1g17e")
+
+[node name="Wcp9" type="Sprite2D" parent="."]
+position = Vector2(1490, 823)
+texture = ExtResource("6_1g17e")
+
+[node name="Wcp10" type="Sprite2D" parent="."]
+position = Vector2(382, 806)
+texture = ExtResource("7_ttcld")
+
+[node name="Wcp11" type="Sprite2D" parent="."]
+position = Vector2(1433, 809)
+texture = ExtResource("7_ttcld")

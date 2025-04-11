@@ -120,7 +120,6 @@ func update_fuel_UI(value):
 		var base_width = 100  # width for 100 max fuel
 		var new_width = base_width + (player.max_fuel - 100) * 1.5
 		bar.size.x = new_width 
-		#print("Fuel bar resized to:", new_width)
 		
 	if value == 0:
 		$UI/fuel/AnimationPlayer.play("alarm")
@@ -132,8 +131,6 @@ func save_high_score():
 	var file = FileAccess.open("user://highscore.save", FileAccess.WRITE)
 	file.store_var(high_score)
 	file.close()
-	#print("High score saved: ", high_score)
-	
 
 func _notification(what):
 	if what == NOTIFICATION_PREDELETE:

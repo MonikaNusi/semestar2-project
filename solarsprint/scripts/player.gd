@@ -207,7 +207,7 @@ func start_speed_boost():
 	boost_flame.visible = true
 	boost_flame.play("flame")
 
-	var boost_strength = 10000.0  # Tweak this as needed
+	var boost_strength = 10000.0
 	var boost_direction = Vector2.RIGHT.rotated(rotation)  # forward in car's direction
 	apply_central_impulse(boost_direction * boost_strength)
 

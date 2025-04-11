@@ -123,7 +123,6 @@ func _on_wheel_power_button_pressed():
 		print("Wheel power is already maxed out!")
 
 func get_wheel_upgrade_cost(level: int) -> int:
-	# Level 1 upgrade = 150, increases by 50 each level
 	return 100 + level * 50
 
 func update_wheel_button_label():

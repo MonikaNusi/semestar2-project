@@ -671,7 +671,7 @@ stream = ExtResource("9_jf7bc")
 autoplay = true
 
 [node name="flag" parent="." instance=ExtResource("10_44mkh")]
-position = Vector2(112642, 1667)
+position = Vector2(112655, 1792)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

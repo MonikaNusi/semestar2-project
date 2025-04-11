@@ -53,4 +53,4 @@ func _on_next_level_pressed():
 			get_tree().change_scene_to_file("res://scenes/levels/level_3.tscn")
 		_:
 			print("Unknown level or final level reached.")
-			get_tree().change_scene_to_file("res://scenes/level_select.tscn")  # Or back to main
+			get_tree().change_scene_to_file("res://scenes/level_select.tscn")
